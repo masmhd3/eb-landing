@@ -11,12 +11,13 @@ html{
 
 /**************** root ************/
 :root{
-    --DarkBlue : hsl(233, 26%, 24%);
-    --LimeGreen: hsl(136, 65%, 51%);
-    --BrightCyan: hsl(192, 70%, 51%);
+    --DarkBlue : #2d314d;
+    --LimeGreen: #31d35c;
+    --BrightCyan: #2bb7da;
     --GrayishBlue: #9698a6;
-    --LightGrayishBlue: hsl(220, 16%, 96%);
-    --VeryLightGray: hsl(0, 0%, 98%);
+    --LightGrayishBlue: #f3f4f6;
+    --VeryLightGray: #fafafa;
+    --myDarkWight: #dbdbdb;
 }
 
 
@@ -54,6 +55,7 @@ button:hover{
 /****************** body ***************/
 body{
     font-family: sans-serif;
+    min-height: 100vh;
 }
 
 
@@ -62,6 +64,12 @@ body{
 /******************** hedeer ********************/
 
 /***** nave *****/
+.navBar{
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 999;
+}
 nav{
     max-width: 900px;
     margin: auto;
@@ -70,6 +78,7 @@ nav{
     justify-content: space-between;
     padding: 10px 20px;
     height: 60px;
+    border-bottom: 2px solid transparent;
 }
 
 nav ul{
@@ -85,11 +94,11 @@ nav ul a{
     font-size: 14px;
     border-bottom: 3px solid transparent;
 }
-nav ul a:hover{
-    border-image: linear-gradient(to right, var(--LimeGreen), var(--BrightCyan)) 1;
-}
+/* nav ul a:hover{
+    border-image: linear-gradient(to right, var(--LimeGreen), var(--BrightCyan)) 1 ;
+} */
 
-nav button{
+nav button,.background button{
     border-radius:15px ;
     background-image:linear-gradient(to right,var(--LimeGreen), var(--BrightCyan) );
     color: white;
@@ -101,9 +110,77 @@ nav .icon{
     display: none;
     border-radius: 10px;
 }
-.icon-hamburger:hover{
+.icon-hamburger:hover,.background button:hover{
     background-color: var(--LightGrayishBlue);
     cursor: pointer;
+}
+
+
+
+
+/***********************  homeSection *******************/
+.background{
+    height: 100vh;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+
+}
+/* text */
+.background .text{
+    align-self: center;
+    width: 350px;
+    margin-left: 70px;
+
+}
+.background .text h2{
+    color: var(--DarkBlue);
+    font-weight: 100;
+    font-size: 40px;
+    letter-spacing: 1px;
+}
+.background .text p{
+    color: #9698a6;
+    font-size: 14px;
+    letter-spacing:.2px;
+    line-height: 22px;
+    margin: 20px 0;
+}
+
+.background .image{
+    background-image: url('./images/bg-intro-desktop.svg');
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 550px;
+    overflow: hidden;
+}
+.background img{
+    width: 100%;
+    z-index: 0;  
+}
+
+
+
+
+
+
+
+
+
+/********* animation ************/
+.opacity0To1{
+    animation: opacity0To1 1s both;
+}
+@keyframes opacity0To1{
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
 }
 
 
@@ -115,12 +192,9 @@ nav .icon{
 
 
 
-
-
-
-
-
 /********************* responsive *********************/
+
+/* navBar */
 @media screen and (max-width:900px){
     nav{
         position: relative;
@@ -131,15 +205,16 @@ nav .icon{
     }
     nav ul{
        position: absolute;
-       top: 100px;
-       width: 85%;
+       top: 80px;
+       width: 90%;
        left: 50%;
        transform: translateX(-50%);
        flex-direction: column;
-       background-color: black;
-       border-radius: 15px;
+       background-color: white;
+       border-radius: 10px;
        align-items: flex-start;
        padding: 10px;
+       box-shadow: 0 0 100px var(--DarkBlue);
 
        opacity: 0;
        display: none;
@@ -154,15 +229,92 @@ nav .icon{
 }
 
 
+/* homeSection */
+@media screen and (max-width:992px){
+    .background{
+        flex-direction: column-reverse;
+        justify-content:flex-end;
+        gap: 30px;
+    }
+    .background .image{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 65%;
+        background-position: bottom;
+        background-image: url('./images/bg-intro-mobile.svg');
+    }
+    .background .image img{
+        width: 560px;
+        z-index: 0 !important;
+        padding: 10px;
+    }
+    .background .text{
+        margin-left: 0;
+    }
 
-/********* animation ************/
-.opacity0To1{
-    animation: opacity0To1 1s both;
+    /*  */
+    .background .text{
+        width: 500px;
+    }
+    .background .text h2{
+        text-align: center;
+        font-size: 50px;
+    }
+    .background .text p{
+        text-align: center;
+    }
+    .background button{
+        margin: auto;
+        display: block;
+        padding: 15px 30px;
+    }
+
 }
-@keyframes opacity0To1{
-    from{
-        opacity: 0;
-    }to{
-        opacity: 1;
+@media screen and (max-width:600px){
+    .background .image img{
+        max-width: 550px;
+    }
+    .background .text{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .background .text p{
+        width: 400px;
+        text-align: center;
+    }
+}
+@media screen and (max-width:560px){
+    .background .image img{
+        width: 100%;
+    }
+    .background .text{
+        margin: 0 5px ;
+        max-width: 400px;
+    }
+    .background .text h2{
+        font-size: 40px;
+    }
+    .background .text p{
+        width: 100%;
+    }
+}
+@media screen and (max-width:490px){
+    .background .image img{
+        transform: translateY(-20px);
+    }
+    .background .image{
+        height: 50%;
+    }
+}
+@media screen and (max-width:400px){
+    .background .text{
+        width: 100%;
+    }
+    .background .text p{
+        width: 100%;
     }
 }

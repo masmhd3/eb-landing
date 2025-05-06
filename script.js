@@ -1,12 +1,24 @@
+///////// this object has all methids I created 
+class Name {
+    // method fetching data
+    async fetchData(API){
+        try{
+            const response = await fetch(API)
+            const data = await response.json()
+            return data
+        }
+        catch(error){
+            console.log(`error fetching data ${error}`)
+        }
+    }
+    
+}
+const MAS = new Name()
 
 
 
 
-
-
-
-
-//////////// style when clicking on navBar links 
+///////////////////////// navBar && links ///////////////////
 
 const navBarLinks = document.querySelectorAll('.listOfLinks li a')
 
@@ -48,3 +60,35 @@ BtnIconNav.onclick = () => {
     }
 };
 
+
+
+// border color of navBar
+window.onscroll  = () =>{
+    if(window.scrollY > 10){
+        document.querySelector('.navBar nav').style.borderColor = '#f3f4f6';
+    }else{
+        document.querySelector('.navBar nav').style.borderColor = 'transparent';
+    }
+}
+
+
+
+// //////////////////////// home setion //////////////////////
+const backgroundSection = document.querySelector('.background')
+async function homeSection(){
+    const allData = await MAS.fetchData('./dataBase.json')
+    const homeSectionData  = allData.home
+    
+
+    backgroundSection.innerHTML =`
+        <div class="text">
+                <h2>${homeSectionData.boldText}</h2>
+                <p>${homeSectionData.text}</p>
+                <button>request invite</button>
+            </div>
+            <div class="image">
+                <img src="${homeSectionData.img.image}" alt="image">
+        </div>
+    `
+}
+homeSection()
