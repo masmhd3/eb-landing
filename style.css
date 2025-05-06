@@ -142,7 +142,7 @@ nav .icon{
     font-size: 40px;
     letter-spacing: 1px;
 }
-.background .text p{
+.background .text p,#about .containerAbout .question p,.contCards .card p{
     color: #9698a6;
     font-size: 14px;
     letter-spacing:.2px;
@@ -165,6 +165,64 @@ nav .icon{
 
 
 
+
+
+
+/******************* aboutSection  ************************/
+#about{
+    height: 80vh;
+    background-color: var(--LightGrayishBlue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+#about .containerAbout{
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+    justify-content: space-between;
+    gap: 45px;
+}
+#about .containerAbout .question{
+    max-width: 500px;
+}
+#about .containerAbout .question h2{
+    font-size: 28px;
+    font-weight: 100;
+    color: var(--DarkBlue);
+}
+/* cards */
+.contCards .card h3{
+    font-weight: 100;
+    color: var(--DarkBlue);
+    margin: 20px 0;
+    letter-spacing: .5px;
+}
+.contCards .card p{
+    font-size: 12px;
+}
+
+
+.contCards{
+    display: flex;
+    gap: 8px;
+}
+
+.card{
+    opacity: 0;
+    transform: translateY(50px);
+    scale: .8;
+    transition: all 0.6s ease;
+}
+  
+.showCard {
+    scale: 1;
+    opacity: 1;
+    transform: translateY(0);
+}
 
 
 
@@ -316,5 +374,39 @@ nav .icon{
     }
     .background .text p{
         width: 100%;
+    }
+}
+
+
+/*************** about section **********/
+@media screen and (max-width:992px){
+    #about .containerAbout{
+        align-items: center;
+        padding: 20px;
+    }
+    #about .containerAbout .question{
+        text-align: center;
+    }
+    .contCards{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 90%;
+        gap: 25px;
+    }
+    .contCards img{
+        display: block;
+        margin: auto;
+    }
+    .contCards h3,.contCards p{
+        text-align: center;
+    }
+}
+@media screen and (max-width:460px){
+    #about{
+        height: auto;
+        padding-top:30px ;
+    }
+    .contCards{
+        grid-template-columns: 1fr;
     }
 }

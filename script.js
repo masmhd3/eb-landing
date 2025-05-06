@@ -82,13 +82,74 @@ async function homeSection(){
 
     backgroundSection.innerHTML =`
         <div class="text">
-                <h2>${homeSectionData.boldText}</h2>
-                <p>${homeSectionData.text}</p>
-                <button>request invite</button>
-            </div>
-            <div class="image">
-                <img src="${homeSectionData.img.image}" alt="image">
+            <h2>${homeSectionData.boldText}</h2>
+            <p>${homeSectionData.text}</p>
+            <button>request invite</button>
+        </div>
+        <div class="image">
+            <img src="${homeSectionData.img.image}" alt="image">
         </div>
     `
 }
 homeSection()
+
+
+
+//////////////////////////// about section ///////////////////
+const aboutSectionContainner = document.querySelector('#about')
+async function aboutSection(){
+    // get data
+    const allData = await MAS.fetchData('./dataBase.json')
+    const aboutSectionData = allData.about
+    const cardsData = aboutSectionData.cards
+
+    // put data
+    const cards = cardsData.map((card,index) => {
+        return(`
+            <div class="card" style="transition-delay: ${index * 0.2}s">
+                <img src="${card.img}" alt="img">
+                <h3>${card.boldText}</h3>
+                <p>${card.text}</p>
+            </div>
+        `)
+    }).join("")
+    aboutSectionContainner.innerHTML =`
+        <div class="containerAbout">
+            <div class="question">
+                <h2>Why choose Easybank?</h2>
+                <p>${aboutSectionData.textQuestion}</p>
+            </div>
+
+            <div class="contCards">${cards}</div>
+        </div>
+    `
+
+    animationCards();
+
+      
+}
+aboutSection()
+
+
+// animation when appearing cards
+function animationCards(){
+
+    const showCards = (observedElements) =>{
+        observedElements.forEach(observed => {
+            if(observed.isIntersecting){
+                observed.target.classList.add('showCard')
+            }else{
+                observed.target.classList.remove('showCard')
+            }
+        })
+    }
+    
+    // this object observe the screen 
+    const observer = new IntersectionObserver(showCards,{threshold:0.5})
+
+    // here I put the cards in an array belonges to observe object
+    document.querySelectorAll('.card').forEach(card =>{
+        observer.observe(card)
+    })
+}
+

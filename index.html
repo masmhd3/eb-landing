@@ -10,11 +10,13 @@
 
     <!-- css -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 </head>
 <body>
     
     <!-------------- header --------------->
-     <header id="home">
+    <header id="home">
         
         <!-------- navBar ------->
         <div class="navBar">
@@ -26,8 +28,8 @@
 
                 <!-- ul of links -->
                 <ul class="listOfLinks">
-                    <li><a href="#">home</a></li>
-                    <li><a href="#">about</a></li>
+                    <li><a href="#home">home</a></li>
+                    <li><a href="#about">about</a></li>
                     <li><a href="#">contact</a></li>
                     <li><a href="#">blog</a></li>
                     <li><a href="#">careers</a></li>
@@ -42,10 +44,31 @@
 
         <!------- background ------------>
         <div class="background"> </div>
-     </header>
+    </header>
+
+
+
+    <!-- main -->
+    <main>
+
+        <!-- about section -->
+        <section id="about"></section>
+      
+
+    </main>
 
 
     <!-- script -->
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
 </body>
 </html>
+
+
+
+
+
