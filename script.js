@@ -10,8 +10,7 @@ class Name {
         catch(error){
             console.log(`error fetching data ${error}`)
         }
-    }
-    
+    };    
 }
 const MAS = new Name()
 
@@ -125,8 +124,6 @@ async function aboutSection(){
     `
 
     animationCards();
-
-      
 }
 aboutSection()
 
@@ -153,3 +150,62 @@ function animationCards(){
     })
 }
 
+
+
+///////////////////////// blog section /////////////////////////////
+const blogContainer = document.getElementById('blog')
+
+const blogSectionFunc = async () => {
+    const allData = await MAS.fetchData('./dataBase.json')
+    const blogData = allData.blog;
+
+
+    const blogs = blogData.map((blog,index) =>{
+        return(
+            `<a href="#" class="blog" style="transition-delay: ${index * 0.2}s">
+                <img src="${blog.img}" alt="img">
+                <div>
+                    <span>${blog.writer}</span>
+                    <h4>${blog.title}</h4>
+                    <p>${blog.text}</p>
+                </div>
+            </a>`
+        )
+    }).join("")
+
+    blogContainer.innerHTML =`
+        <h1>Latest Articles</h1>
+        <div class="blogs-container">${blogs}</div>
+    `
+
+    aniBlog() // animation
+}
+
+blogSectionFunc()
+
+// animation of blog section
+const aniBlog = () =>{
+
+    // when element appear in screen
+    const func = (observedElements) =>{
+        observedElements.forEach(observed => {
+            if(observed.isIntersecting){
+                observed.target.style.opacity = '1'
+                observed.target.style.scale = '1'
+                observed.target.style.transform = 'translateY(0)'
+            }else{
+                observed.target.style.opacity = '0'
+                observed.target.style.scale = '.8'
+                observed.target.style.transform = 'translateY(20px)'
+            }
+        })
+    }
+
+    // this object observe some elements
+    const observer = new IntersectionObserver(func,{threshold:.5})
+
+    // here, I give that object the element I want him to observe
+    document.querySelectorAll('.blog').forEach(blog => {
+        observer.observe(blog)
+    })
+}
