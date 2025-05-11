@@ -98,7 +98,7 @@ nav ul a{
     border-image: linear-gradient(to right, var(--LimeGreen), var(--BrightCyan)) 1 ;
 } */
 
-nav button,.background button{
+nav button,.background button,footer button{
     border-radius:15px ;
     background-image:linear-gradient(to right,var(--LimeGreen), var(--BrightCyan) );
     color: white;
@@ -293,6 +293,73 @@ nav .icon{
     font-size: 13px;
     letter-spacing: .5px;
 }
+
+
+
+/********************* footer  *********************/
+footer{
+    background-color: var(--DarkBlue);
+    height: 150px;
+}
+
+.container{
+    max-width: 850px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80%;
+}
+
+footer .logo{
+    color: var(--LightGrayishBlue);
+    font-weight: 600;
+    font-size: 18px;
+}
+footer .div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+footer .div a{
+    color: var(--myDarkWight);
+    font-size: 12px;
+    letter-spacing: .6px;
+    padding: 1px;
+}
+footer .div a:hover{
+    color: #31d35c;
+}
+footer button{
+    width: fit-content;
+}
+
+.col-4{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.col-4 p{
+    font-size: 12px;
+    color: var(--GrayishBlue);
+}
+
+.icons{
+    padding: 5px;
+}
+footer .logo{
+    padding-left: 8px;
+}
+.icons a{
+    padding: 3px;
+    border-bottom:1px solid transparent ;
+}
+.icons a:hover{
+    border-color: #31d35c;
+}
+
+
 
 
 
@@ -536,5 +603,41 @@ nav .icon{
     }
     .blogs-container{
         grid-template-columns: repeat(1,1fr);
+    }
+}
+
+
+
+/*************** footer section  ********/
+@media screen and (max-width:900px){
+    footer{
+        height: auto;
+        padding: 30px;
+    }
+    a{
+        text-align: center;
+    }
+    
+}
+@media screen and (max-width:600px){
+    .container{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .container *{
+        text-align: center;
+        margin: auto;
+    }
+    footer .icons{
+        display: flex;
+        gap: 10px;
+        margin: auto;
+        justify-content: center;
+    }
+    .col-4 p{
+        margin-top: 20px;
+    }
+    footer{
+        padding-bottom: 15px;
     }
 }
